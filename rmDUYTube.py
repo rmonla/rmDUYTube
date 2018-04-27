@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__proy__ = "rm_duytb.py"
+__proy__ = "rmDUYTube.py"
 __ver__  = "1.0.3"
 """
-# 
 #*<®> DescargaYSubeAYouTube. <®>*
 # 
 # Proyecto que descarga un video desde una url 
