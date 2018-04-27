@@ -12,6 +12,8 @@ __ver__  = "1.0.3"
 # Requerimientos:
 # Este proyecto esta desarrollado para linux y nesecita para funcionar
 # tener instalado los siguientes módulos de python:
+#    pip para instalar paquetes python.
+#       sudo apt-get install python-pip
 #    wget para la descarga.
 #       --> sudo pip install wget
 #    google apis para la subida a youtube.
