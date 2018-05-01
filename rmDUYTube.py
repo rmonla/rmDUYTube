@@ -13,11 +13,11 @@ __ver__  = "1.0.3"
 # Este proyecto esta desarrollado para linux y nesecita para funcionar
 # tener instalado los siguientes módulos de python:
 #    pip para instalar paquetes python.
-#       sudo apt-get install python-pip
-#    wget para la descarga.
-#       --> sudo pip install wget
+#       --> sudo apt-get install python-pip
 #    google apis para la subida a youtube.
 #       --> sudo pip install --upgrade google-api-python-client
+#    wget para la descarga.
+#       --> sudo pip install wget
 # además el script de ejemplo descargado desde las google apis para youtube
 #
 # Copyright (c) 2016 Ricardo MONLA (rmonla@gmail.com)
