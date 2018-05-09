@@ -9,7 +9,7 @@ rmVer="1.0.1"
 rmPth="/home/rmonla/rmFiles/rmDocs/DTIC/Scripts/rm_duytb"
 
 
-
+exitcode=1
 #
 ##
 ## <®> Funsiones <®>
@@ -31,6 +31,24 @@ rm_msg()
 	echo "$rmApp: $msg"
 	echo
 	exit 1
+}
+##########################################################################
+# moz_run_program()
+rm_run_app()
+{
+	app=$MOZ_PROGRAM
+	##
+	## Verifica si el script es ejecutable.
+	##
+	if [ ! -x "$app" ]
+	then
+		rm_msg "NO se puede ejecutar $app."
+	fi
+	##
+	## Ejecuto el script.
+	##
+	exec "$app" ${1+"$@"}
+	exitcode=$?
 }
 ##########################################################################
 
