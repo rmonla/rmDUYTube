@@ -4,12 +4,10 @@
 # 
 # <®> Copyright (c) 2018 Ricardo MONLA <®>
 
-rmApp=`basename "$0"`
-rmVer="1.0.1"
-rmPth="/home/rmonla/rmFiles/rmDocs/DTIC/Scripts/rm_duytb"
+duyAPP=`basename "$0"`
+duyVER="1.0.1"
+duyCOP="<®> ${duyAPP} v${duyVER} : Copyright (c) 2018 Ricardo MONLA <®>"
 
-
-exitcode=1
 #
 ##
 ## <®> Funsiones <®>
@@ -19,7 +17,9 @@ exitcode=1
 duy_uso()
 {
 echo ""
-echo "Uso:  ${rmApp} -u URL -a ARCHIVO [-t TITULO]"
+echo "${duyCOP}"
+echo ""
+echo "Uso:  ${duyAPP} -u URL -a ARCHIVO [-t TITULO]"
 echo ""
 echo "  Requeridos:"
 echo "    -u, --url=URL           Url del archivo de video a descargar"
@@ -30,7 +30,7 @@ echo "    -t, --titulo=TITULO     Título para el video en YouTube"
 echo "    -h, --help              Esta ayuda por pantalla"
 echo ""
 echo "  Ejemplo:"
-echo "    ${rmApp} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
+echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
 echo ""
 echo ""
 	return 0
@@ -40,7 +40,7 @@ duy_msg()
 {
 	msg=$1
 	echo
-	echo "$rmApp:"
+	echo "$duyAPP:"
 	echo "		 $msg"
 	echo
 	exit 1
@@ -48,7 +48,7 @@ duy_msg()
 ##########################################################################
 duy_run()
 {
-	app=$rmApp
+	app=$duyAPP
 	##
 	## Verifica si el script es ejecutable.
 	##
