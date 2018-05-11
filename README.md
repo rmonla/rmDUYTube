@@ -13,6 +13,7 @@ Descarga un archivo de video y lo sube a YouTube.
 
 
 ## rmDUYTube.sh:
+	'''
 	Uso:  rmDUYTube.sh -u URL -a ARCHIVO [-t TITULO]
 
   Requeridos:
@@ -25,5 +26,5 @@ Descarga un archivo de video y lo sube a YouTube.
 
   Ejemplo:
     rmDUYTube.sh -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10
-
+	'''
 
