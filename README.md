@@ -4,4 +4,4 @@ Descarga un archivo de video y lo sube a YouTube.
 
 Pendiente:
 
-	- Terminar con rmDUYTube.sh
+	- rmDUYTube.sh: hacer que funcione exec

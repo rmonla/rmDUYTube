@@ -30,13 +30,12 @@ echo "    -t, --titulo=TITULO     Título para el video en YouTube."
 echo "    -h, --help              Esta ayuda por pantalla."
 echo ""
 echo "  Ejemplo:"
-echo "    ${rmApp} -u http://server/video.mp4 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
+echo "    ${rmApp} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
 echo ""
 echo ""
 	return 0
 }
 ##########################################################################
-# moz_bail()
 rm_msg()
 {
 	msg=$1
@@ -46,7 +45,6 @@ rm_msg()
 	exit 1
 }
 ##########################################################################
-# moz_run_program()
 rm_run_app()
 {
 	app=$rmApp
@@ -61,13 +59,16 @@ rm_run_app()
 	## Ejecuto el script.
 	##
 	echo
-	echo "Nombre De App: $app"
+	echo "App:     $app"
+	echo "Url:     $duy_url"
+	echo "Archivo: $duy_arch"
+	echo "Título:  $duy_tit"
 	echo
 	
+	duy_cmd="python rmDUYTube.py -u $duy_url -o $duy_arch"
 
-
-	# exec "$app" ${1+"$@"}
-	exitcode=$?
+	exec "$duy_cmd" ${1+"$@"}
+	exit 1
 	
 	
 
@@ -118,14 +119,25 @@ do
         duy_tit=$duy_arch
       fi
       ;;
-    *)
+    -h | --help)
       rm_uso
+      exit 1
+      ;;
+    *)
       break;
       ;;
   esac
 done
       
-if [ "${duy_url}" = "" or "${duy_arch}" = "" ]; then
+req=0
+if [ "${duy_url}" != "" ]; then
+	if [ "${duy_arch}" != "" ]; then
+		req=1
+	fi
+fi
+
+if [ "${req}" != 0 ]; then
+	# rm_run_app
 	rm_run_app ${1+"$@"}
 else
 	rm_uso
@@ -133,6 +145,7 @@ else
 	exit 1
 fi
 
+# if [ "${duy_url}" != "" or "${duy_arch}" != "" ]
 
 
 exit $exitcode
