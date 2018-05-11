@@ -3,11 +3,13 @@ Descarga un archivo de video y lo sube a YouTube.
 
 
 ## Introducción:
-	Este script descarga desde una dirección URL 
-	un archivo de video el cual luego lo sube mediante las APIs de google a YouTube. 
+	Este script descarga desde una dirección URL un archivo de video el cual luego lo sube mediante las APIs de google a YouTube. 
 
 
 ## rmDUYTube.sh:
+
+	<®> rmDUYTube.sh v1.0.1 : Copyright (c) 2018 Ricardo MONLA <®>
+
 	Uso:  rmDUYTube.sh -u URL -a ARCHIVO [-t TITULO]
 
 	  Requeridos:
