@@ -22,12 +22,12 @@ echo ""
 echo "Uso:  ${rmApp} -u URL -a ARCHIVO [-t TITULO]"
 echo ""
 echo "  Requeridos:"
-echo "    -u, --url=URL           Url del archivo de video a descargar."
-echo "    -a, --archivo=ARCHIVO   Nombre del archivo descargado."
+echo "    -u, --url=URL           Url del archivo de video a descargar"
+echo "    -a, --archivo=ARCHIVO   Nombre del archivo descargado"
 echo ""
 echo "  Opcionales:"
-echo "    -t, --titulo=TITULO     Título para el video en YouTube."
-echo "    -h, --help              Esta ayuda por pantalla."
+echo "    -t, --titulo=TITULO     Título para el video en YouTube"
+echo "    -h, --help              Esta ayuda por pantalla"
 echo ""
 echo "  Ejemplo:"
 echo "    ${rmApp} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
@@ -40,7 +40,8 @@ rm_msg()
 {
 	msg=$1
 	echo
-	echo "$rmApp: $msg"
+	echo "$rmApp:"
+	echo "		 $msg"
 	echo
 	exit 1
 }
@@ -53,7 +54,7 @@ rm_run_app()
 	##
 	if [ ! -x "$app" ]
 	then
-		rm_msg "NO tiene permisos para ejecutarce."
+		rm_msg "No puede ejecutarce el script --> $app"
 	fi
 	##
 	## Ejecuto el script.
@@ -65,9 +66,10 @@ rm_run_app()
 	echo "Título:  $duy_tit"
 	echo
 	
-	duy_cmd="python rmDUYTube.py -u $duy_url -o $duy_arch"
+	# duy_cmd="python rmDUYTube.py -u $duy_url -o $duy_arch"
 
-	exec "$duy_cmd" ${1+"$@"}
+	# exec "$duy_cmd" ${1+"$@"}
+	python rmDUYTube.py "-u $duy_url -o $duy_arch -t $duy_tit"
 	exit 1
 	
 	
@@ -97,7 +99,7 @@ do
 	shift 2
       else
         rm_uso
-        rm_msg "-u La URL es requerida."
+        rm_msg "Falta URL --> -u URL"
         exit 1
       fi
       ;;
@@ -107,7 +109,7 @@ do
 	shift 2
       else
         rm_uso
-        rm_msg "-a El nombre del ARCHIVO de salida es requerido."
+        rm_msg "Falta nombre del ARCHIVO de salida --> -a ARCHIVO"
         exit 1
       fi
       ;;
@@ -124,6 +126,9 @@ do
       exit 1
       ;;
     *)
+      rm_uso
+      rm_msg "No se reconoce el parámetro --> $1"
+      exit 1
       break;
       ;;
   esac
