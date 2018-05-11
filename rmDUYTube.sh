@@ -18,37 +18,19 @@ exitcode=1
 # moz_usage()
 rm_uso()
 {
+echo ""
 echo "Uso:  ${rmApp} -u URL -a ARCHIVO [-t TITULO]"
 echo ""
-echo "  requerido:"
+echo "  Requeridos:"
+echo "    -u, --url=URL           Url del archivo de video a descargar."
+echo "    -a, --archivo=ARCHIVO   Nombre del archivo descargado."
 echo ""
-echo "    -u URL           Url del archivo de video a descargar."
-echo "    --url URL"
-echo ""
-echo "    -a ARCHIVO       Nombre del archivo descargado."
-echo "    --archivo ARCHIVO"
-echo ""
-echo "  opcional:"
-echo ""
-echo "    -t TITULO        Titulo para el video en YouTube."
-echo "    --titulo -TITULO"
-echo ""
-echo "    -h               Esta ayuda por pantalla."
-echo "    --help"
-echo ""
+echo "  Opcionales:"
+echo "    -t, --titulo=TITULO     Título para el video en YouTube."
+echo "    -h, --help              Esta ayuda por pantalla."
 echo ""
 echo "  Ejemplo:"
-echo ""
-echo "  Usando el nombre de archivo como titulo."
-echo ""
-echo "    ${rmApp} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90" 
-echo "             -a TSAyGIES_Gestión_C10_24Abr18"
-echo ""
-echo "  Especificando tambien titulo."
-echo ""
-echo "    ${rmApp} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90" 
-echo "             -a TSAyGIES_Gestión_C10_24Abr18"
-echo "             -t Clase_10"
+echo "    ${rmApp} -u http://server/video.mp4 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
 echo ""
 echo ""
 	return 0
@@ -73,12 +55,18 @@ rm_run_app()
 	##
 	if [ ! -x "$app" ]
 	then
-		rm_msg "NO se puede ejecutar $app."
+		rm_msg "NO tiene permisos para ejecutarce."
 	fi
 	##
 	## Ejecuto el script.
 	##
-	exec "$app" ${1+"$@"}
+	echo
+	echo "Nombre De App: $app"
+	echo
+	
+
+
+	# exec "$app" ${1+"$@"}
 	exitcode=$?
 	
 	
@@ -91,11 +79,10 @@ rm_run_app()
 }
 ##########################################################################
 ##
-## Command line arg defaults
+## Predetermino argumentos
 ##
-# moz_debug=0
-# moz_debugger=""
-# moz_debugger_args=""
+duy_url=""
+duy_arch=""
 #
 ##
 ## Parse the command line
@@ -108,7 +95,8 @@ do
       if [ "${duy_url}" != "" ]; then
 	shift 2
       else
-        echo "-u La URL es requerida."
+        rm_uso
+        rm_msg "-u La URL es requerida."
         exit 1
       fi
       ;;
@@ -117,7 +105,8 @@ do
       if [ "${duy_arch}" != "" ]; then
 	shift 2
       else
-        echo "-a El ARCHIVO de salida es requerido."
+        rm_uso
+        rm_msg "-a El nombre del ARCHIVO de salida es requerido."
         exit 1
       fi
       ;;
@@ -135,7 +124,15 @@ do
       ;;
   esac
 done
+      
+if [ "${duy_url}" = "" or "${duy_arch}" = "" ]; then
+	rm_run_app ${1+"$@"}
+else
+	rm_uso
+	rm_msg "Faltan parámetros."
+	exit 1
+fi
 
-rm_run_app ${1+"$@"}
+
 
 exit $exitcode
