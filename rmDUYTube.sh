@@ -20,6 +20,31 @@ rm_uso()
 {
 echo "Uso:  ${rmApp}"
 echo ""
+echo "  options:"
+echo ""
+echo "    -u URL           Url del archivo de video a descargar."
+echo "    --url URL"
+echo ""
+echo "    -a ARCHIVO       Nombre del archivo descargado."
+echo "    --archivo ARCHIVO"
+echo ""
+echo "    -a debugger_args     Arguments passed to [debugger]."
+echo "    --debugger-args debugger_args"
+echo ""
+echo "  Examples:"
+echo ""
+echo "  Run the mozilla-bin binary"
+echo ""
+echo "    ${cmdname} mozilla-bin"
+echo ""
+echo "  Debug the mozilla-bin binary in gdb"
+echo ""
+echo "    ${cmdname} -g mozilla-bin -d gdb"
+echo ""
+echo "  Run mozilla-bin under valgrind with arguments"
+echo ""
+echo "    ${cmdname} -g -d valgrind -a '--tool=memcheck --leak-check=full' mozilla-bin"
+echo ""
 	return 0
 }
 ##########################################################################
@@ -51,7 +76,84 @@ rm_run_app()
 	exitcode=$?
 }
 ##########################################################################
-
+##
+## Command line arg defaults
+##
+# moz_debug=0
+# moz_debugger=""
+# moz_debugger_args=""
+#
+##
+## Parse the command line
+##
+while [ $# -gt 0 ]
+do
+  case $1 in
+    -u | --url)
+      duy_url=$2;
+      if [ "${duy_url}" != "" ]; then
+	shift 2
+      else
+        echo "-u La URL es requerida."
+        exit 1
+      fi
+      ;;
+    -a | --archivo)
+      duy_arch=$2;
+      if [ "${duy_arch}" != "" ]; then
+	shift 2
+      else
+        echo "-a El ARCHIVO de salida es requerido."
+        exit 1
+      fi
+      ;;
+    -o | --output)
+      moz_debug=1
+      shift
+      ;;
+    -a | --debugger-args)
+      moz_debugger_args=$2;
+      if [ "${moz_debugger_args}" != "" ]; then
+	shift 2
+      else
+        echo "-a requires an argument"
+        exit 1
+      fi
+      ;;
+    *)
+      break;
+      ;;
+  esac
+done
+#
+##
+## Program name given in $1
+##
+if [ $# -gt 0 ]
+then
+	MOZ_PROGRAM=$1
+	shift
+fi
+##
+## Program not given, try to guess a default
+##
+if [ -z "$MOZ_PROGRAM" ]
+then
+	##
+	## Try this script's name with '-bin' appended
+	##
+	if [ -x "$MOZ_DEFAULT_NAME" ]
+	then
+		MOZ_PROGRAM=$MOZ_DEFAULT_NAME
+	##
+	## Try mozilla-bin
+	## 
+	elif [ -x "$MOZ_APPRUNNER_NAME" ]
+	then
+		MOZ_PROGRAM=$MOZ_APPRUNNER_NAME
+	fi
+fi
+#
 
 
 cd /home/rmonla/rmFiles/rmDocs/DTIC/Scripts/rm_duytb
