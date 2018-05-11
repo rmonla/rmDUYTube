@@ -18,9 +18,9 @@ exitcode=1
 # moz_usage()
 rm_uso()
 {
-echo "Uso:  ${rmApp}"
+echo "Uso:  ${rmApp} -u URL -a ARCHIVO [-t TITULO]"
 echo ""
-echo "  options:"
+echo "  requerido:"
 echo ""
 echo "    -u URL           Url del archivo de video a descargar."
 echo "    --url URL"
@@ -28,22 +28,28 @@ echo ""
 echo "    -a ARCHIVO       Nombre del archivo descargado."
 echo "    --archivo ARCHIVO"
 echo ""
-echo "    -a debugger_args     Arguments passed to [debugger]."
-echo "    --debugger-args debugger_args"
+echo "  opcional:"
 echo ""
-echo "  Examples:"
+echo "    -t TITULO        Titulo para el video en YouTube."
+echo "    --titulo -TITULO"
 echo ""
-echo "  Run the mozilla-bin binary"
+echo "    -h               Esta ayuda por pantalla."
+echo "    --help"
 echo ""
-echo "    ${cmdname} mozilla-bin"
 echo ""
-echo "  Debug the mozilla-bin binary in gdb"
+echo "  Ejemplo:"
 echo ""
-echo "    ${cmdname} -g mozilla-bin -d gdb"
+echo "  Usando el nombre de archivo como titulo."
 echo ""
-echo "  Run mozilla-bin under valgrind with arguments"
+echo "    ${rmApp} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90" 
+echo "             -a TSAyGIES_Gestión_C10_24Abr18"
 echo ""
-echo "    ${cmdname} -g -d valgrind -a '--tool=memcheck --leak-check=full' mozilla-bin"
+echo "  Especificando tambien titulo."
+echo ""
+echo "    ${rmApp} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90" 
+echo "             -a TSAyGIES_Gestión_C10_24Abr18"
+echo "             -t Clase_10"
+echo ""
 echo ""
 	return 0
 }
@@ -61,7 +67,7 @@ rm_msg()
 # moz_run_program()
 rm_run_app()
 {
-	app=$MOZ_PROGRAM
+	app=$rmApp
 	##
 	## Verifica si el script es ejecutable.
 	##
