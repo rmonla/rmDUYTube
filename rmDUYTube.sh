@@ -80,6 +80,14 @@ rm_run_app()
 	##
 	exec "$app" ${1+"$@"}
 	exitcode=$?
+	
+	
+
+# cd /home/rmonla/rmFiles/rmDocs/DTIC/Scripts/rm_duytb
+# screen python rmDUYTube.py -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -o TSAyGIES_Gestión_C10_24Abr18
+# screen python rmDUYTube.py -u http://190.114.222.202/tcs/download/034027E7-224E-49CE-8597-8AEDF519AF46 -o TSAyGIES_Gestión_C11_26Abr18
+
+
 }
 ##########################################################################
 ##
@@ -113,55 +121,21 @@ do
         exit 1
       fi
       ;;
-    -o | --output)
-      moz_debug=1
-      shift
-      ;;
-    -a | --debugger-args)
-      moz_debugger_args=$2;
-      if [ "${moz_debugger_args}" != "" ]; then
+    -t | --titulo)
+      duy_tit=$2;
+      if [ "${duy_tit}" != "" ]; then
 	shift 2
       else
-        echo "-a requires an argument"
-        exit 1
+        duy_tit=$duy_arch
       fi
       ;;
     *)
+      rm_uso
       break;
       ;;
   esac
 done
-#
-##
-## Program name given in $1
-##
-if [ $# -gt 0 ]
-then
-	MOZ_PROGRAM=$1
-	shift
-fi
-##
-## Program not given, try to guess a default
-##
-if [ -z "$MOZ_PROGRAM" ]
-then
-	##
-	## Try this script's name with '-bin' appended
-	##
-	if [ -x "$MOZ_DEFAULT_NAME" ]
-	then
-		MOZ_PROGRAM=$MOZ_DEFAULT_NAME
-	##
-	## Try mozilla-bin
-	## 
-	elif [ -x "$MOZ_APPRUNNER_NAME" ]
-	then
-		MOZ_PROGRAM=$MOZ_APPRUNNER_NAME
-	fi
-fi
-#
 
+rm_run_app ${1+"$@"}
 
-cd /home/rmonla/rmFiles/rmDocs/DTIC/Scripts/rm_duytb
-screen python rmDUYTube.py -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -o TSAyGIES_Gestión_C10_24Abr18
-screen python rmDUYTube.py -u http://190.114.222.202/tcs/download/034027E7-224E-49CE-8597-8AEDF519AF46 -o TSAyGIES_Gestión_C11_26Abr18
+exit $exitcode
