@@ -72,13 +72,13 @@ duy_run()
 }
 ##########################################################################
 ##
-## Predetermino argumentos
+## <®> Argumento Predeterminados <®>
 ##
 duyURL=""
 duyARCH=""
 #
 ##
-## Parse the command line
+## <®> Argumentos de Linea de Comandos <®>
 ##
 while [ $# -gt 0 ]
 do
