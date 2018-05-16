@@ -56,12 +56,13 @@ import os
 def descargar():
   import wget
 
-  print("Descargando desde --> %s" % opts.url)
-  print("")
+  print("App     -> %s" % __proy__)
+  print("URL     -> %s" % opts.url)
+  print("Archivo -> %s" % opts.output)
   opts.fnom = wget.download(opts.url, opts.output)
 
   print("")
-  print("Descargado y guardado --> %s" % opts.fnom)
+  print("*** Descargado -> %s" % opts.fnom)
 
 def subir():
   import time

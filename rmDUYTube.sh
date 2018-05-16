@@ -60,10 +60,10 @@ duy_run()
 	## Ejecuto el script.
 	##
 	echo
-	echo "App:     $app"
-	echo "Url:     $duyURL"
-	echo "Archivo: $duyARCH"
-	echo "Título:  $duyTIT"
+	echo "App     -> $app"
+	echo "Url     -> $duyURL"
+	echo "Archivo -> $duyARCH"
+	echo "Título  -> $duyTIT"
 	echo
 	
 	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
@@ -72,10 +72,11 @@ duy_run()
 }
 ##########################################################################
 ##
-## <®> Argumento Predeterminados <®>
+## <®> Argumentos Predeterminados <®>
 ##
 duyURL=""
 duyARCH=""
+duyTIT=""
 #
 ##
 ## <®> Argumentos de Linea de Comandos <®>
@@ -124,15 +125,22 @@ do
   esac
 done
       
+#
+##
+## <®> Verifica Requeridos <®>
+##
 req=0
-if [ "${duyURL}" != "" ]; then
-	if [ "${duyARCH}" != "" ]; then
-		req=1
-	fi
+if [ "${duyURL}" = "" ]; then
+	req=1
+fi
+if [ "${duyARCH}" = "" ]; then
+	req=1
+fi
+if [ "${duyTIT}" = "" ]; then
+	duyTIT=$duyARCH
 fi
 
-if [ "${req}" != 0 ]; then
-	# duy_run
+if [ "${req}" = 0 ]; then
 	duy_run ${1+"$@"}
 else
 	duy_uso
