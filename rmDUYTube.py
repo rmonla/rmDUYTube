@@ -56,13 +56,16 @@ import os
 def descargar():
   import wget
 
+  opts.output = 'tmp/' + opts.output
+
   print("App     -> %s" % __proy__)
   print("URL     -> %s" % opts.url)
   print("Archivo -> %s" % opts.output)
-  opts.fnom = wget.download(opts.url, opts.output)
-
   print("")
-  print("*** Descargado -> %s" % opts.fnom)
+  print("Descargando")
+  opts.fnom = wget.download(opts.url, opts.output)
+  print("")
+  print("*** Descargado en -> %s" % opts.fnom)
 
 def subir():
   import time
@@ -75,14 +78,17 @@ def subir():
   cmd = "python upload_video.py --file=" + opts.fnom + " --title=" + opts.ytb_tit
   time.sleep( 2 )
   
+  print("")
   print("Subiendo a YouTube --> %s" % opts.fnom)
+  print("")
   
   process = subprocess.Popen(cmd.split())
 
   output, error = process.communicate()
 
   print("")
-  print('Terminados todos los procesos.')
+  print('*** Terminado ***')
+  print("")
 
 
 #*<®> Análisis de parámatros <®>*
@@ -98,8 +104,9 @@ if __name__ == "__main__":
   
   from optparse import OptionParser
   parser = OptionParser()
-  parser.add_option("-o", "--output", dest="output")
   parser.add_option("-u", "--url",    dest="url")
+  parser.add_option("-a", "--arch", dest="arch")
+  parser.add_option("-o", "--output", dest="output")
   parser.add_option("-t", "--ytb_tit", dest="ytb_tit")
   parser.add_option(      "--fnom",   dest="fnom") #Solo uso interno.
   (opts, args) = parser.parse_args()
