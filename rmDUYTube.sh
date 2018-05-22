@@ -39,14 +39,15 @@ echo ""
 ##########################################################################
 duy_msg()
 {
-	msg=$1
-	sale=$2
-	uso=$3
+	# $1	Mensaje a mostrar.
+	# $2	Muestra uso del script si está en 1.
+	# $3
 
 	##
 	## Verifica si muestra el uso del programa.
 	##
-	if [ "$uso" == "1" ]; then
+	# if [ "$uso" == "1" ]; then
+	if [ $2 = 1 ]; then
 		duy_uso
 	fi
 	##
