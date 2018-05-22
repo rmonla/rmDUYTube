@@ -44,6 +44,7 @@ duy_uso(){
 ### <®> Muestra por pantalla mensajes. 
 ##
 duy_msj(){
+	mensaje=$1
 	# $1	Mensaje a mostrar.
 	# $2	Muestra uso del script si está en 1.
 	# $3	Sale del script si esta en 1.
@@ -57,15 +58,17 @@ duy_msj(){
 	##
 	## Muestra el mensaje.
 	##
-	echo
-	echo "$duyAPP:"
-	echo "		 $1"
-	echo
+	if [ "$1" != "" ] ; then
+		echo
+		echo "$duyAPP:"
+		echo "		 $1"
+		echo
+	fi 
 	##
 	## Verifica si sale del programa.
 	##
 	if [ $3 = 1 ]; then
-		duy_exit
+		exit 1
 	else
 		return 0
 	fi
@@ -95,7 +98,7 @@ duy_down(){
 	echo "duyDIR  -> $duyDIR"
 	echo
 	
-	## python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
+	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
 	duy_exit
 
 }
@@ -105,8 +108,9 @@ duy_down(){
 ### <®> Sale del script
 ##
 duy_exit(){
-	duy_msj "<®> Hasta luego <®>"
-	duy_msj "<®> ${duyCOP} <®>" 0 1
+	duy_msj " Hasta luego "
+	duy_msj " ${duyCOP} "
+	exit 1
 }
 ##########################################################################
 duy_run(){
@@ -141,6 +145,7 @@ duy_run(){
 ##
 ### <®> Inicializa Variables
 ##
+clear
 duyURL=""
 duyARCH=""
 duyTIT=""
@@ -186,8 +191,7 @@ do
       fi
       ;;
     -h | --help)
-      duy_uso
-      duy_exit
+      duy_msj "" 1 1
       ;;
     *)
       duy_msj "No se reconoce el parámetro --> $1" 1 1
