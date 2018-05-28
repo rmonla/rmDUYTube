@@ -99,7 +99,7 @@ duy_down(){
 	echo
 	
 	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
-	duy_exit
+	exit 1
 
 }
 ##########################################################################
@@ -131,8 +131,9 @@ duy_run(){
 	echo "Título  -> $duyTIT"
 	echo
 	
-	# python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
-	duy_exit
+	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
+	# duy_exit
+	exit 1
 }
 ##########################################################################
 
@@ -215,4 +216,7 @@ else
 	duy_msj "Faltan parámetros." 1 1
 fi
 	
-duy_exit
+# duy_exit
+
+exit 1
+
