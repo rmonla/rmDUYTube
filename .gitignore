@@ -1,2 +1,1 @@
-/tmp/*
-/upload_video.py-oauth2.json
+*.py-oauth2.json
