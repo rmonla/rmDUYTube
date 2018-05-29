@@ -5,7 +5,7 @@
 # <®> Copyright (c) 2018 Ricardo MONLA <®>
 
 duyAPP=`basename "$0"`
-duyVER="1.0.1"
+duyVER="1.0.3"
 duyCOP="<®> ${duyAPP} v${duyVER} : Copyright (c) 2018 Ricardo MONLA <®>"
 
 #
@@ -44,7 +44,6 @@ duy_uso(){
 ### <®> Muestra por pantalla mensajes. 
 ##
 duy_msj(){
-	mensaje=$1
 	# $1	Mensaje a mostrar.
 	# $2	Muestra uso del script si está en 1.
 	# $3	Sale del script si esta en 1.
