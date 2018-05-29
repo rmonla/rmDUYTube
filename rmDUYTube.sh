@@ -29,7 +29,7 @@ duy_uso(){
 	echo ""
 	echo "  Opcionales:"
 	echo "    -t, --titulo=TITULO     Título para el video en YouTube"
-	echo "    -d, --dtmp=DIRECTORIO   Directorio donde se descarga el archivo [tmp/]"
+	echo "    -d, --dtmp=DIRECTORIO   Directorio donde se descarga el archivo [tmp]"
 	echo "    -h, --help              Esta ayuda por pantalla"
 	echo ""
 	echo "  Ejemplo:"
@@ -124,13 +124,14 @@ duy_run(){
 	## Ejecuto el script.
 	##
 	echo
-	echo "App     -> $duyAPP"
-	echo "Url     -> $duyURL"
-	echo "Archivo -> $duyARCH"
-	echo "Título  -> $duyTIT"
+	echo "App            -> $duyAPP"
+	echo "Url        [-u]-> $duyURL"
+	echo "Archivo    [-a]-> $duyARCH"
+	echo "Título     [-t]-> $duyTIT"
+	echo "Directorio [-d]-> $duyDIR"
 	echo
 	
-	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
+	# python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
 	# duy_exit
 	exit 1
 }
@@ -149,7 +150,7 @@ clear
 duyURL=""
 duyARCH=""
 duyTIT=""
-duyDIR="tmp/"
+duyDIR="tmp"
 #
 ##
 ### <®> Obtiene argumentos de la línea de comandos
@@ -183,12 +184,12 @@ do
       ;;
     -d | --dtmp)
       dtmp=$2;
-      if [ "${dtmp}" != "" ]; then
+      if [ -d "${dtmp}" ]; then
 		duyDIR=$dtmp
-		shift 2
       else
-      	duy_msj "Directorio invalido se opta por predeterminado"
+      	duy_msj "Directorio invalido se opta por predeterminado [${duyDIR}]" 0 0
       fi
+      shift 2
       ;;
     -h | --help)
       duy_msj "" 1 1
