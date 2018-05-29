@@ -33,7 +33,7 @@ duy_uso(){
 	echo "    -h, --help              Esta ayuda por pantalla"
 	echo ""
 	echo "  Ejemplo:"
-	echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
+	echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395 -a Video_01 -t Video_10"
 	echo ""
 	echo ""
 	return 0
