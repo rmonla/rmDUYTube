@@ -131,7 +131,7 @@ duy_run(){
 	echo "Directorio [-d]-> $duyDIR"
 	echo
 	
-	# python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
+	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
 	# duy_exit
 	exit 1
 }
