@@ -97,6 +97,15 @@ duy_down(){
 	echo "duyDIR  -> $duyDIR"
 	echo
 	
+	duyCMD= "wget "
+	# wget http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F539 -e echo Hola
+	# wget ‐‐spider http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
+	# wget -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
+	# wget -o log/video1 -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
+	# wget –delete-after -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F539
+	# wget –delete-after -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
+	# –delete-after
+	
 	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
 	exit 1
 
