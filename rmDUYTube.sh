@@ -78,18 +78,13 @@ duy_msj(){
 ### <®> Descarga el archivo desde la url
 ##
 duy_down(){
-	dtmp=$duyDIR
-	##
-	## Verifica si el script es ejecutable.
-	##
-	if [ ! -x "$app" ]
-	then
-		duy_msj "No puede ejecutarce el script --> $app"
-	fi
-	##
-	## Ejecuto el script.
-	##
-	echo
+	url="$duyURL"
+	dir="$duyDIR"
+	file="$duyARCH"
+	dst="$duyDIR/$duyARCH"
+
+	echo "$dst"
+	
 	echo "App     -> $app"
 	echo "Url     -> $duyURL"
 	echo "Archivo -> $duyARCH"
@@ -98,9 +93,9 @@ duy_down(){
 	echo
 	
 	duyCMD= "wget "
+	# wget -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
 	# wget http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F539 -e echo Hola
 	# wget ‐‐spider http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
-	# wget -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
 	# wget -o log/video1 -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
 	# wget –delete-after -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F539
 	# wget –delete-after -O tmp/video1 http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395
