@@ -29,7 +29,7 @@ duy_uso(){
 	echo ""
 	echo "  Opcionales:"
 	echo "    -t, --titulo=TITULO     Título para el video en YouTube"
-	echo "    -d, --dtmp=DIRECTORIO   Directorio donde se descarga el archivo [tmp]"
+	echo "    -d, --dtmp=DIRECTORIO   Directorio donde se descarga el archivo [tmps]"
 	echo "    -h, --help              Esta ayuda por pantalla"
 	echo ""
 	echo "  Ejemplo:"
@@ -167,7 +167,7 @@ duy_up(){
 duyURL=""
 duyARCH=""
 duyTIT=""
-duyDIR="tmp"
+duyDIR="tmps"
 #
 ##
 ### <®> Obtiene argumentos de la línea de comandos
