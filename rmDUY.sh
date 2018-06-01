@@ -6,7 +6,7 @@
 
 duyAPP=`basename "$0"`
 duyVER="1.0.3"
-duyCOP="<®> ${duyAPP} v${duyVER} : Copyright (c) 2018 Ricardo MONLA <®>"
+duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA"
 
 #
 ##
@@ -33,7 +33,7 @@ duy_uso(){
 	echo "    -h, --help              Esta ayuda por pantalla"
 	echo ""
 	echo "  Ejemplo:"
-	echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395 -a Video_01 -t Video_10"
+	echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/A8BA7269-F41E-42C1-AD7C-2EEEB558D784 -a Video_01 -t Video_10"
 	echo ""
 	echo ""
 	return 0
@@ -78,12 +78,15 @@ duy_msj(){
 ### <®> Sale del script
 ##
 duy_exit(){
-	duy_msj " Hasta luego "
-	duy_msj " ${duyCOP} "
-	exit 1
+	# duy_msj "Hasta luego"
+	duy_msj "${duyCOP}" 0 0
+	
+	return 0
+	# exit 1
 }
 ##########################################################################
 duy_run(){
+	clear
 	##
 	## Verifica si el script es ejecutable.
 	##
@@ -100,10 +103,17 @@ duy_run(){
 	echo "Archivo    [-a]-> $duyARCH"
 	echo "Título     [-t]-> $duyTIT"
 	echo "Directorio [-d]-> $duyDIR"
-	echo
 	
-	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
-	# duy_exit
+	echo
+	duy_down
+
+	duy_up
+	echo
+
+	# python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
+	
+	duy_exit
+	
 	exit 1
 }
 ##########################################################################
@@ -124,6 +134,25 @@ duy_down(){
 	# exit 1
 }
 ##########################################################################
+#
+##
+### <®> Descarga el archivo desde la url
+##
+duy_up(){
+	file="$duyDST"
+	tit="$duyTIT"
+
+	# echo
+	# echo "wget -O $dst $url"
+	echo
+	python rmDUY_UP.py --file="$file" --title="$tit"
+	
+	# wget -O "$dst" "$url"
+	
+	return 0
+	# exit 1
+}
+##########################################################################
 
 #
 ##
@@ -134,7 +163,7 @@ duy_down(){
 ##
 ### <®> Inicializa Variables
 ##
-clear
+# clear
 duyURL=""
 duyARCH=""
 duyTIT=""
