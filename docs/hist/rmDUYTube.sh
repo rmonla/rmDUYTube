@@ -5,7 +5,7 @@
 # <®> Copyright (c) 2018 Ricardo MONLA <®>
 
 duyAPP=`basename "$0"`
-duyVER="1.0.1"
+duyVER="1.0.3"
 duyCOP="<®> ${duyAPP} v${duyVER} : Copyright (c) 2018 Ricardo MONLA <®>"
 
 #
@@ -29,11 +29,11 @@ duy_uso(){
 	echo ""
 	echo "  Opcionales:"
 	echo "    -t, --titulo=TITULO     Título para el video en YouTube"
-	echo "    -d, --dtmp=DIRECTORIO   Directorio donde se descarga el archivo [tmp/]"
+	echo "    -d, --dtmp=DIRECTORIO   Directorio donde se descarga el archivo [tmp]"
 	echo "    -h, --help              Esta ayuda por pantalla"
 	echo ""
 	echo "  Ejemplo:"
-	echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/0D88714D-0490-4D75-BF4A-3126CD5E1A90 -a TSAyGIES_Gestión_C10_24Abr18 -t Clase_10"
+	echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/7F6B1451-C3D6-42A8-956E-13D33A6F5395 -a Video_01 -t Video_10"
 	echo ""
 	echo ""
 	return 0
@@ -44,7 +44,6 @@ duy_uso(){
 ### <®> Muestra por pantalla mensajes. 
 ##
 duy_msj(){
-	mensaje=$1
 	# $1	Mensaje a mostrar.
 	# $2	Muestra uso del script si está en 1.
 	# $3	Sale del script si esta en 1.
@@ -76,35 +75,6 @@ duy_msj(){
 ##########################################################################
 #
 ##
-### <®> Descarga el archivo desde la url
-##
-duy_down(){
-	dtmp=$duyDIR
-	##
-	## Verifica si el script es ejecutable.
-	##
-	if [ ! -x "$app" ]
-	then
-		duy_msj "No puede ejecutarce el script --> $app"
-	fi
-	##
-	## Ejecuto el script.
-	##
-	echo
-	echo "App     -> $app"
-	echo "Url     -> $duyURL"
-	echo "Archivo -> $duyARCH"
-	echo "Título  -> $duyTIT"
-	echo "duyDIR  -> $duyDIR"
-	echo
-	
-	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
-	exit 1
-
-}
-##########################################################################
-#
-##
 ### <®> Sale del script
 ##
 duy_exit(){
@@ -125,15 +95,33 @@ duy_run(){
 	## Ejecuto el script.
 	##
 	echo
-	echo "App     -> $duyAPP"
-	echo "Url     -> $duyURL"
-	echo "Archivo -> $duyARCH"
-	echo "Título  -> $duyTIT"
+	echo "App            -> $duyAPP"
+	echo "Url        [-u]-> $duyURL"
+	echo "Archivo    [-a]-> $duyARCH"
+	echo "Título     [-t]-> $duyTIT"
+	echo "Directorio [-d]-> $duyDIR"
 	echo
 	
 	python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
 	# duy_exit
 	exit 1
+}
+##########################################################################
+#
+##
+### <®> Descarga el archivo desde la url
+##
+duy_down(){
+	dst="$duyDST"
+	url="$duyURL"
+
+	# echo
+	# echo "wget -O $dst $url"
+	echo
+	wget -O "$dst" "$url"
+	
+	return 0
+	# exit 1
 }
 ##########################################################################
 
@@ -150,7 +138,7 @@ clear
 duyURL=""
 duyARCH=""
 duyTIT=""
-duyDIR="tmp/"
+duyDIR="tmp"
 #
 ##
 ### <®> Obtiene argumentos de la línea de comandos
@@ -184,12 +172,12 @@ do
       ;;
     -d | --dtmp)
       dtmp=$2;
-      if [ "${dtmp}" != "" ]; then
+      if [ -d "${dtmp}" ]; then
 		duyDIR=$dtmp
-		shift 2
       else
-      	duy_msj "Directorio invalido se opta por predeterminado"
+      	duy_msj "Directorio invalido se opta por predeterminado [${duyDIR}]" 0 0
       fi
+      shift 2
       ;;
     -h | --help)
       duy_msj "" 1 1
@@ -201,14 +189,16 @@ do
   esac
 done
       
+
 #
 ##
 ### <®> Si verifican los requeridos ejecuta el script
 ##
-
 if [ "${duyTIT}" = "" ]; then
 	duyTIT=$duyARCH
 fi
+
+duyDST="$duyDIR/$duyARCH"
 
 if [ "${duyURL}" != "" ] || [ "${duyARCH}" != "" ] ; then
 	duy_run ${1+"$@"}
@@ -216,7 +206,5 @@ else
 	duy_msj "Faltan parámetros." 1 1
 fi
 	
-# duy_exit
-
 exit 1
 
