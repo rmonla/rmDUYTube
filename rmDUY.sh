@@ -1,8 +1,26 @@
 #!/bin/sh
 #
-# Este script es para la ejecución del rmDUYTube.py desde linux.
+#*<®> rmDUY.sh Descarga-Sube-YouTube. <®>*
 # 
-# <®> Copyright (c) 2018 Ricardo MONLA <®>
+# Proyecto que descarga un video desde una url 
+# y lugo lo sube a tu canal de YouTube.
+#
+# Requerimientos:
+# Este proyecto esta desarrollado para linux y nesecita para funcionar
+# tener instalado lo siguiente: 
+# 
+# 	Módulos de linux:
+#    	sudo apt-get install wget
+# 
+# 	Módulos de python:
+#    	pip para instalar paquetes python.
+#       	--> sudo apt-get install python-pip
+#    	google apis para la subida a youtube.
+#       	--> sudo pip install --upgrade oauth2client
+#       	--> sudo pip install --upgrade google-api-python-client
+#
+# Copyright (c) 2016 Ricardo MONLA (rmonla@gmail.com)
+#
 
 duyAPP=`basename "$0"`
 duyVER="1.0.3"
