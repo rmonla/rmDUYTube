@@ -23,7 +23,7 @@
 #
 
 duyAPP=`basename "$0"`
-duyVER="1.0.3"
+duyVER="1.0.4"
 duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA"
 
 #
@@ -120,7 +120,6 @@ duy_exit(){
 	duy_msj -m "${duyCOP}" -s
 	
 	return 0
-	# exit 1
 }
 ##########################################################################
 duy_run(){
