@@ -23,6 +23,8 @@
 #
 
 duyAPP=`basename "$0"`
+duyPTH=`dirname "$0"`
+
 duyVER="1.0.4"
 duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA"
 
@@ -89,7 +91,7 @@ duy_msj(){
 
 	## Muestra uso del script.
 	if [ $uso = 1 ]; then
-		nm_uso
+		duy_uso
 	fi
 
 	## Muestra el mensaje.
@@ -124,6 +126,8 @@ duy_exit(){
 ##########################################################################
 duy_run(){
 	clear
+	cd $duyPTH 
+	# duy_msj -m "cd $duyPTH" -s 
 	##
 	## Verifica si el script es ejecutable.
 	##
