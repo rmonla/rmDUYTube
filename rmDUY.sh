@@ -62,29 +62,49 @@ duy_uso(){
 ### <®> Muestra por pantalla mensajes. 
 ##
 duy_msj(){
-	# $1	Mensaje a mostrar.
-	# $2	Muestra uso del script si está en 1.
-	# $3	Sale del script si esta en 1.
+	# -m MENSAJE  Mensaje a mostrar.
+	# -u	      Muestra uso.
+	# -s	      Sale del script.
+	
+	msj=''
+	uso=0
+	sale=0
 
-	##
-	## Verifica si muestra el uso del programa.
-	##
-	if [ $2 = 1 ]; then
-		duy_uso
+	## Argumentos.
+	while [ "$1" ]; do
+	    case "$1" in
+		-m)
+			shift
+		    msj="$1"
+		    ;;
+		-u)
+		    uso=1
+		    ;;
+		-s)
+		    sale=1
+		    ;;
+	    esac
+	    shift
+	done
+
+	## Muestra uso del script.
+	if [ $uso = 1 ]; then
+		nm_uso
 	fi
-	##
+
 	## Muestra el mensaje.
-	##
-	if [ "$1" != "" ] ; then
-		echo
+	if [ "$msj" != "" ]; then
+		echo ""
 		echo "$duyAPP:"
-		echo "		 $1"
-		echo
+		echo "		 $msj"
+		echo ""
 	fi 
-	##
-	## Verifica si sale del programa.
-	##
-	if [ $3 = 1 ]; then
+
+	## Sale del script.
+	if [ $sale = 1 ]; then
+	
+		echo "###########################################################################"
+		echo ""
 		exit 1
 	else
 		return 0
@@ -97,7 +117,7 @@ duy_msj(){
 ##
 duy_exit(){
 	# duy_msj "Hasta luego"
-	duy_msj "${duyCOP}" 0 0
+	duy_msj -m "${duyCOP}" -s
 	
 	return 0
 	# exit 1
@@ -110,7 +130,7 @@ duy_run(){
 	##
 	if [ ! -x "$duyAPP" ]
 	then
-		duy_msj "No puede ejecutarce el script --> $duyAPP" 1
+		duy_msj -m "No puede ejecutarce el script --> $duyAPP" -s
 	fi
 	##
 	## Ejecuto el script.
@@ -198,7 +218,7 @@ do
       if [ "${duyURL}" != "" ]; then
 		shift 2
       else
-        duy_msj "Falta URL --> -u URL" 1 1
+        duy_msj -m "Falta URL --> -u URL" -u -s
       fi
       ;;
     -a | --archivo)
@@ -206,7 +226,7 @@ do
       if [ "${duyARCH}" != "" ]; then
 		shift 2
       else
-        duy_msj "Falta nombre del ARCHIVO de salida --> -a ARCHIVO" 1 1
+        duy_msj -m "Falta nombre del ARCHIVO de salida --> -a ARCHIVO" -u -s
       fi
       ;;
     -t | --titulo)
@@ -222,7 +242,7 @@ do
       if [ -d "${dtmp}" ]; then
 		duyDIR=$dtmp
       else
-      	duy_msj "Directorio invalido se opta por predeterminado [${duyDIR}]" 0 0
+      	duy_msj -m "Directorio invalido se opta por predeterminado [${duyDIR}]"
       fi
       shift 2
       ;;
@@ -230,7 +250,7 @@ do
       duy_msj "" 1 1
       ;;
     *)
-      duy_msj "No se reconoce el parámetro --> $1" 1 1
+      duy_msj -m "No se reconoce el parámetro --> $1" -u -s
       break;
       ;;
   esac
@@ -250,7 +270,7 @@ duyDST="$duyDIR/$duyARCH"
 if [ "${duyURL}" != "" ] || [ "${duyARCH}" != "" ] ; then
 	duy_run ${1+"$@"}
 else
-	duy_msj "Faltan parámetros." 1 1
+	duy_msj -m "Faltan parámetros." -u -s
 fi
 	
 exit 1
