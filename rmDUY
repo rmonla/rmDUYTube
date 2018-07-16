@@ -25,7 +25,7 @@
 duyAPP=`basename "$0"`
 duyPTH=`dirname "$0"`
 
-duyVER="1.0.4"
+duyVER="1.0.3"
 duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA"
 
 #
@@ -57,6 +57,40 @@ duy_uso(){
 	echo ""
 	echo ""
 	return 0
+}
+##########################################################################
+duy_run(){
+	clear
+	cd $duyPTH 
+	# duy_msj -m "cd $duyPTH" -s 
+	##
+	## Verifica si el script es ejecutable.
+	##
+	if [ ! -x "$duyAPP" ]
+	then
+		duy_msj -m "No puede ejecutarce el script --> $duyAPP" -s
+	fi
+	##
+	## Ejecuto el script.
+	##
+	echo
+	echo "App            -> $duyAPP"
+	echo "Url        [-u]-> $duyURL"
+	echo "Archivo    [-a]-> $duyARCH"
+	echo "Título     [-t]-> $duyTIT"
+	echo "Directorio [-d]-> $duyDIR"
+	
+	echo
+	duy_down
+
+	duy_up
+	echo
+
+	# python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
+	
+	duy_exit
+	
+	exit 1
 }
 ##########################################################################
 #
@@ -122,40 +156,6 @@ duy_exit(){
 	duy_msj -m "${duyCOP}" -s
 	
 	return 0
-}
-##########################################################################
-duy_run(){
-	clear
-	cd $duyPTH 
-	# duy_msj -m "cd $duyPTH" -s 
-	##
-	## Verifica si el script es ejecutable.
-	##
-	if [ ! -x "$duyAPP" ]
-	then
-		duy_msj -m "No puede ejecutarce el script --> $duyAPP" -s
-	fi
-	##
-	## Ejecuto el script.
-	##
-	echo
-	echo "App            -> $duyAPP"
-	echo "Url        [-u]-> $duyURL"
-	echo "Archivo    [-a]-> $duyARCH"
-	echo "Título     [-t]-> $duyTIT"
-	echo "Directorio [-d]-> $duyDIR"
-	
-	echo
-	duy_down
-
-	duy_up
-	echo
-
-	# python rmDUYTube.py -u "$duyURL" -o "$duyARCH" -t "$duyTIT"
-	
-	duy_exit
-	
-	exit 1
 }
 ##########################################################################
 #
