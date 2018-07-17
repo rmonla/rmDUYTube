@@ -53,7 +53,7 @@
 duyAPP=`basename "$0"`
 duyPTH=`dirname "$0"`
 
-duyVER="1.0.5"
+duyVER="1.0.6"
 
 duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA <rmonla@gmail.com>"
 
@@ -61,7 +61,7 @@ duyURL=""
 duyARCH=""
 duyTIT=""
 
-duyTMP="tmps"
+duyDST="/tmp/"
 
 ################################################################################
 # <®> FUNSIONES <®>
@@ -81,6 +81,7 @@ duy_ver(){ # <®> Muestra detalle de versión.
   * #### Se mejora ayuda de modo de uso. 
   * #### Se mejora salidas por pantallas. 
   * #### Se agrega duy_ver() para mostrar detalles de versión.
+  * #### Se optimiza CAPTURA DE ARGUMENTOS.
 
 EOF
 	return 0
@@ -93,13 +94,13 @@ duy_uso(){ # <®> Muestra la forma de uso.
 
     Descarga un archivo de video y lo sube a YouTube.
 
-    -u, --url URL           Url del archivo de video a descargar.
-    -a, --archivo ARCHIVO   Nombre del archivo descargado.
+    -u, --url URL             Url del archivo de video a descargar.
+    -a, --archivo ARCHIVO     Nombre del archivo descargado.
 
-    -t, --titulo TITULO     Título para el video en YouTube.
-    -d, --dtmp DIRECTORIO   Directorio donde se descarga el archivo [tmps].
-    -v, --ver               Muestra detalle de versión.
-    -h, --help              Esta ayuda por pantalla.
+    -t, --titulo TITULO       Título para el video en YouTube.
+    -d, --destino DIRECTORIO  Directorio donde se descarga el archivo [$duyDST].
+    -v, --ver                 Muestra detalle de versión.
+    -h, --help                Esta ayuda por pantalla.
 
   Ejemplo: ${duyAPP} -u http://190.114.222.202/tcs/download/EA552BC8-CB22-4E08-9222-21DAAD0CAF3 -a NOMBREvideo -t TITULOvideo
 EOF
@@ -114,7 +115,7 @@ duy_run(){ # <®> Ejecuto el script.
 		duyTIT=$duyARCH
 	fi
 
-	duyDST="$duyTMP/$duyARCH"
+	duyDST2="$duyDST$duyARCH"
 
 	##
 	## Verifica si el script es ejecutable.
@@ -131,7 +132,7 @@ duy_run(){ # <®> Ejecuto el script.
 	echo "Url        [-u]-> $duyURL"
 	echo "Archivo    [-a]-> $duyARCH"
 	echo "Título     [-t]-> $duyTIT"
-	echo "Directorio [-d]-> $duyTMP"
+	echo "Directorio [-d]-> $duyDST"
 	
 	echo
 	duy_down
@@ -179,9 +180,8 @@ duy_msj(){ # <®> Muestra un mensajes por pantalla.
 	## Muestra el mensaje.
 	if [ "$msj" != "" ]; then
 		echo ""
-		echo "$duyAPP:"
-		echo "    $msj"
 		echo ""
+		echo "$duyAPP: $msj"
 	fi 
 
 	## Sale del script.
@@ -202,7 +202,7 @@ duy_exit(){ # <®> Sale del script.
 }
 
 duy_down(){ # <®> Descarga el archivo desde la url.
-	dst="$duyDST"
+	dst="$duyDST2"
 	url="$duyURL"
 
 	echo
@@ -212,7 +212,7 @@ duy_down(){ # <®> Descarga el archivo desde la url.
 }
 
 duy_up(){ # <®> Subo el archivo a YouTube.
-	file="$duyDST"
+	file="$duyDST2"
 	tit="$duyTIT"
 
 	echo
@@ -235,51 +235,51 @@ echo "##########################################################################
 
 while [ $# -gt 0 ]
 do
-  case $1 in
-    -u | --url)
-      duyURL=$2;
-      if [ "${duyURL}" != "" ]; then
-		shift 2
-      else
-        duy_msj -m "Falta URL --> -u URL" -u -s
-      fi
-      ;;
-    -a | --archivo)
-      duyARCH=$2;
-      if [ "${duyARCH}" != "" ]; then
-		shift 2
-      else
-        duy_msj -m "Falta nombre del ARCHIVO de salida --> -a ARCHIVO" -u -s
-      fi
-      ;;
-    -t | --titulo)
-      duyTIT=$2;
-      if [ "${duyTIT}" != "" ]; then
-		shift 2
-      else
-        duyTIT=$duyARCH
-      fi
-      ;;
-    -d | --dtmp)
-      dtmp=$2;
-      if [ -d "${dtmp}" ]; then
-		duyTMP=$dtmp
-      else
-      	duy_msj -m "Directorio invalido se opta por predeterminado [${duyTMP}]"
-      fi
-      shift 2
-      ;;
-    -v | --ver)
-      duy_msj -v -s
-      ;;
-    -h | --help)
-      duy_msj -u -s
-      ;;
-    *)
-      duy_msj -m "No se reconoce el parámetro --> $1" -u -s
-      break;
-      ;;
-  esac
+	case $1 in
+		-u | --url)
+			duyURL=$2;
+			if [ "${duyURL}" = "" ]; then
+				duy_msj -m "Falta URL --> -u URL" -u -s
+			else
+				shift 2
+			fi
+			;;
+		-a | --archivo)
+			duyARCH=$2;
+			if [ "${duyARCH}" = "" ]; then
+				duy_msj -m "Falta nombre del ARCHIVO de salida --> -a ARCHIVO" -u -s
+			else
+				shift 2
+			fi
+			;;
+		-t | --titulo)
+			duyTIT=$2;
+			if [ "${duyTIT}" = "" ]; then
+				duyTIT=$duyARCH
+			else
+				shift 2
+			fi
+			;;
+		-d | --destino)
+			destino=$2;
+			if [ -d "${destino}" ]; then
+				duy_msj -m "Directorio invalido se opta por predeterminado [${duyDST}]"
+			else
+				duyDST=$destino
+			fi
+			shift 2
+			;;
+		-v | --ver)
+			duy_msj -v -s
+			;;
+		-h | --help)
+			duy_msj -u -s
+			;;
+		*)
+			duy_msj -m "No se reconoce el parámetro --> $1" -u -s
+			break;
+			;;
+	esac
 done
       
 
