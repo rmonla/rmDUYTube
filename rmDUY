@@ -55,21 +55,6 @@ duyPTH=`dirname "$0"`
 
 duyVER="1.0.4"
 
-duyVERDesc=<<EOF
-
-### Realizado:
-* #### Se agrega Copyright.
-* #### Se agrega duyVERDesc para descripción de versión.
-* #### Se limpia, ordena y optimiza código.
-* #### Se mejora ayuda de modo de uso. 
-* #### Se mejora salidas por pantallas. 
-
-### Pendiente:
-* #### Generer logs de descarga.
-* #### Generer logs de descarga.
-
-EOF
-
 duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA <rmonla@gmail.com>"
 
 duyURL=""
@@ -82,23 +67,41 @@ duyTMP="tmps"
 # <®> FUNSIONES <®>
 ################################################################################
 
-duy_uso(){ # <®> Muestra la forma de uso.
+duy_ver(){ # <®> Muestra detalle de versión.
 
+  ### Pendiente:
+  #### Generar logs de descarga.
+
+  cat >&2 <<EOF
+
+  ${duyAPP} v${duyVER}
+
+  * #### Se agrega Copyright.
+  * #### Se limpia, ordena y optimiza código.
+  * #### Se mejora ayuda de modo de uso. 
+  * #### Se mejora salidas por pantallas. 
+  * #### Se agrega duy_ver() para mostrar detalles de versión.
+
+EOF
+	return 0
+}
+
+duy_uso(){ # <®> Muestra la forma de uso.
   cat >&2 <<EOF
 
   Uso:     ${duyAPP} -u URL -a ARCHIVO [OPCIONES]
 
     Descarga un archivo de video y lo sube a YouTube.
 
-    -u, --url URL           Url del archivo de video a descargar
-    -a, --archivo ARCHIVO   Nombre del archivo descargado
+    -u, --url URL           Url del archivo de video a descargar.
+    -a, --archivo ARCHIVO   Nombre del archivo descargado.
 
-    -t, --titulo TITULO     Título para el video en YouTube
-    -d, --dtmp DIRECTORIO   Directorio donde se descarga el archivo [tmps]
-    -h, --help              Esta ayuda por pantalla
+    -t, --titulo TITULO     Título para el video en YouTube.
+    -d, --dtmp DIRECTORIO   Directorio donde se descarga el archivo [tmps].
+    -v, --ver               Muestra detalle de versión.
+    -h, --help              Esta ayuda por pantalla.
 
   Ejemplo: ${duyAPP} -u http://190.114.222.202/tcs/download/EA552BC8-CB22-4E08-9222-21DAAD0CAF3 -a NOMBREvideo -t TITULOvideo
-
 EOF
 	return 0
 }
@@ -146,11 +149,11 @@ duy_run(){ # <®> Ejecuto el script.
 duy_msj(){ # <®> Muestra un mensajes por pantalla.
 
 	# -m MENSAJE  Mensaje a mostrar.
-	# -u	      Muestra uso.
+	# -u	      Muestra uso del script.
+	# -v	      Muestra detalle de versión.
 	# -s	      Sale del script.
 	
 	msj=''
-	uso=0
 	sale=0
 
 	## Argumentos.
@@ -160,8 +163,11 @@ duy_msj(){ # <®> Muestra un mensajes por pantalla.
 			shift
 		    msj="$1"
 		    ;;
-		-u)
-		    uso=1
+		-u) 
+		    duy_uso
+		    ;;
+		-v) 
+		    duy_ver
 		    ;;
 		-s)
 		    sale=1
@@ -169,11 +175,6 @@ duy_msj(){ # <®> Muestra un mensajes por pantalla.
 	    esac
 	    shift
 	done
-
-	## Muestra uso del script.
-	if [ $uso = 1 ]; then
-		duy_uso
-	fi
 
 	## Muestra el mensaje.
 	if [ "$msj" != "" ]; then
@@ -185,7 +186,6 @@ duy_msj(){ # <®> Muestra un mensajes por pantalla.
 
 	## Sale del script.
 	if [ $sale = 1 ]; then
-	
 		echo "################################################################################"
 		echo ""
 		exit 1
@@ -268,6 +268,9 @@ do
       	duy_msj -m "Directorio invalido se opta por predeterminado [${duyTMP}]"
       fi
       shift 2
+      ;;
+    -v | --ver)
+      duy_msj -v -s
       ;;
     -h | --help)
       duy_msj -u -s
