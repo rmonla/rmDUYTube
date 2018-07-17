@@ -6,7 +6,8 @@
 ################################################################################
 #
 #     rmDUY 
-#           Descarga un archivo de video y lo sube a YouTube.
+#           Este script descarga desde una dirección URL un archivo de video
+#           que luego sube mediante las APIs de google a YouTube.
 #
 #     Copyright (C) 2018 Ricardo MONLA <rmonla@gmail.com>
 #
@@ -53,7 +54,7 @@
 duyAPP=`basename "$0"`
 duyPTH=`dirname "$0"`
 
-duyVER="1.0.6"
+duyVER="1.0.7"
 
 duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA <rmonla@gmail.com>"
 
@@ -82,6 +83,7 @@ duy_ver(){ # <®> Muestra detalle de versión.
   * #### Se mejora salidas por pantallas. 
   * #### Se agrega duy_ver() para mostrar detalles de versión.
   * #### Se optimiza CAPTURA DE ARGUMENTOS.
+  * #### Se actualiza README.md
 
 EOF
 	return 0
@@ -92,7 +94,8 @@ duy_uso(){ # <®> Muestra la forma de uso.
 
   Uso:     ${duyAPP} -u URL -a ARCHIVO [OPCIONES]
 
-    Descarga un archivo de video y lo sube a YouTube.
+    Este script descarga desde una dirección URL un archivo de video
+    que luego sube mediante las APIs de google a YouTube.
 
     -u, --url URL             Url del archivo de video a descargar.
     -a, --archivo ARCHIVO     Nombre del archivo descargado.
@@ -195,9 +198,7 @@ duy_msj(){ # <®> Muestra un mensajes por pantalla.
 }
 
 duy_exit(){ # <®> Sale del script.
-	# duy_msj "Hasta luego"
-	duy_msj -m "${duyCOP}" -s
-	
+	duy_msj  -s -m "Todos los procesos terminados."
 	return 0
 }
 
@@ -218,8 +219,6 @@ duy_up(){ # <®> Subo el archivo a YouTube.
 	echo
 	python rmDUY_UP.py --file="$file" --title="$tit"
 	
-	# wget -O "$dst" "$url"
-	
 	return 0
 }
 
@@ -239,7 +238,7 @@ do
 		-u | --url)
 			duyURL=$2;
 			if [ "${duyURL}" = "" ]; then
-				duy_msj -m "Falta URL --> -u URL" -u -s
+				duy_msj -u -s -m "Falta URL --> -u URL"
 			else
 				shift 2
 			fi
@@ -247,7 +246,7 @@ do
 		-a | --archivo)
 			duyARCH=$2;
 			if [ "${duyARCH}" = "" ]; then
-				duy_msj -m "Falta nombre del ARCHIVO de salida --> -a ARCHIVO" -u -s
+				duy_msj -u -s -m "Falta nombre del ARCHIVO de salida --> -a ARCHIVO"
 			else
 				shift 2
 			fi
@@ -276,7 +275,7 @@ do
 			duy_msj -u -s
 			;;
 		*)
-			duy_msj -m "No se reconoce el parámetro --> $1" -u -s
+			duy_msj  -u -s -m "No se reconoce el parámetro --> $1"
 			break;
 			;;
 	esac
@@ -287,10 +286,10 @@ done
 # <®> VERIFICACION Y EJECUCION <®>
 ################################################################################
 
-if [ "${duyURL}" != "" ] || [ "${duyARCH}" != "" ] ; then
-	duy_run ${1+"$@"}
+if [ "${duyURL}" = "" ] || [ "${duyARCH}" = "" ] ; then
+	duy_msj -u -s -m "Faltan parámetros."
 else
-	duy_msj -m "Faltan parámetros." -u -s
+	duy_run ${1+"$@"}
 fi
 	
 exit 1
