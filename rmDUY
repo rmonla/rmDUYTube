@@ -1,13 +1,40 @@
 #!/bin/sh
 #
-#*<®> rmDUY.sh Descarga-Sube-YouTube. <®>*
-# 
-# Proyecto que descarga un video desde una url 
-# y lugo lo sube a tu canal de YouTube.
+
+################################################################################
+# <®> Copyright
+################################################################################
 #
-# Requerimientos:
-# Este proyecto esta desarrollado para linux y nesecita para funcionar
-# tener instalado lo siguiente: 
+#     rmDUY 
+#           Descarga un archivo de video y lo sube a YouTube.
+#
+#     Copyright (C) 2018 Ricardo MONLA <rmonla@gmail.com>
+#
+#     Permission is hereby granted, free of charge, to any person
+#     obtaining a copy of this file (the "Program"), to deal in the
+#     Program without restriction, including without limitation the
+#     rights to use, copy, modify, merge, publish, distribute,
+#     sublicense, and/or sell copies of the Program, and to permit
+#     persons to whom the Program is furnished to do so, subject to
+#     the following conditions: The above copyright notice and this
+#     permission notice shall be included in all copies or substantial
+#     portions of the Program.
+#
+#     THE PROGRAM IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+#     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+#     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+#     NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+#     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+#     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+#     FROM, OUT OF OR IN CONNECTION WITH THE PROGRAM OR THE USE OR
+#     OTHER DEALINGS IN THE PROGRAM.
+#
+################################################################################
+# <®> REQUERIDO
+################################################################################
+#
+#   Este proyecto esta desarrollado para linux y para funcionar 
+#   nesecita tener instalado lo siguiente: 
 # 
 # 	Módulos de linux:
 #    	sudo apt-get install wget
@@ -19,50 +46,73 @@
 #       	--> sudo pip install --upgrade oauth2client
 #       	--> sudo pip install --upgrade google-api-python-client
 #
-# Copyright (c) 2016 Ricardo MONLA (rmonla@gmail.com)
-#
-
+################################################################################
+# <®> VARIABLES
+################################################################################
+ 
 duyAPP=`basename "$0"`
 duyPTH=`dirname "$0"`
 
-duyVER="1.0.3"
-duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA"
+duyVER="1.0.4"
 
-#
-##
-### <®> Funsiones <®>
-##
-##########################################################################
-#
-##
-### <®> Muestra la forma de uso del script. 
-##
-duy_uso(){
-	echo ""
-	echo "${duyCOP}"
-	echo ""
-	echo "Uso:  ${duyAPP} -u URL -a ARCHIVO [-t TITULO]"
-	echo ""
-	echo "  Requeridos:"
-	echo "    -u, --url=URL           Url del archivo de video a descargar"
-	echo "    -a, --archivo=ARCHIVO   Nombre del archivo descargado"
-	echo ""
-	echo "  Opcionales:"
-	echo "    -t, --titulo=TITULO     Título para el video en YouTube"
-	echo "    -d, --dtmp=DIRECTORIO   Directorio donde se descarga el archivo [tmps]"
-	echo "    -h, --help              Esta ayuda por pantalla"
-	echo ""
-	echo "  Ejemplo:"
-	echo "    ${duyAPP} -u http://190.114.222.202/tcs/download/A8BA7269-F41E-42C1-AD7C-2EEEB558D784 -a Video_01 -t Video_10"
-	echo ""
-	echo ""
+duyVERDesc=<<EOF
+
+### Realizado:
+* #### Se agrega Copyright.
+* #### Se agrega duyVERDesc para descripción de versión.
+* #### Se limpia, ordena y optimiza código.
+* #### Se mejora ayuda de modo de uso. 
+* #### Se mejora salidas por pantallas. 
+
+### Pendiente:
+* #### Generer logs de descarga.
+* #### Generer logs de descarga.
+
+EOF
+
+duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA <rmonla@gmail.com>"
+
+duyURL=""
+duyARCH=""
+duyTIT=""
+
+duyTMP="tmps"
+
+################################################################################
+# <®> FUNSIONES <®>
+################################################################################
+
+duy_uso(){ # <®> Muestra la forma de uso.
+
+  cat >&2 <<EOF
+
+  Uso:     ${duyAPP} -u URL -a ARCHIVO [OPCIONES]
+
+    Descarga un archivo de video y lo sube a YouTube.
+
+    -u, --url URL           Url del archivo de video a descargar
+    -a, --archivo ARCHIVO   Nombre del archivo descargado
+
+    -t, --titulo TITULO     Título para el video en YouTube
+    -d, --dtmp DIRECTORIO   Directorio donde se descarga el archivo [tmps]
+    -h, --help              Esta ayuda por pantalla
+
+  Ejemplo: ${duyAPP} -u http://190.114.222.202/tcs/download/EA552BC8-CB22-4E08-9222-21DAAD0CAF3 -a NOMBREvideo -t TITULOvideo
+
+EOF
 	return 0
 }
-##########################################################################
-duy_run(){
-	clear
+
+duy_run(){ # <®> Ejecuto el script.
+
 	cd $duyPTH 
-	# duy_msj -m "cd $duyPTH" -s 
+	
+	if [ "${duyTIT}" = "" ]; then
+		duyTIT=$duyARCH
+	fi
+
+	duyDST="$duyTMP/$duyARCH"
+
 	##
 	## Verifica si el script es ejecutable.
 	##
@@ -78,7 +128,7 @@ duy_run(){
 	echo "Url        [-u]-> $duyURL"
 	echo "Archivo    [-a]-> $duyARCH"
 	echo "Título     [-t]-> $duyTIT"
-	echo "Directorio [-d]-> $duyDIR"
+	echo "Directorio [-d]-> $duyTMP"
 	
 	echo
 	duy_down
@@ -92,12 +142,9 @@ duy_run(){
 	
 	exit 1
 }
-##########################################################################
-#
-##
-### <®> Muestra por pantalla mensajes. 
-##
-duy_msj(){
+
+duy_msj(){ # <®> Muestra un mensajes por pantalla.
+
 	# -m MENSAJE  Mensaje a mostrar.
 	# -u	      Muestra uso.
 	# -s	      Sale del script.
@@ -132,87 +179,60 @@ duy_msj(){
 	if [ "$msj" != "" ]; then
 		echo ""
 		echo "$duyAPP:"
-		echo "		 $msj"
+		echo "    $msj"
 		echo ""
 	fi 
 
 	## Sale del script.
 	if [ $sale = 1 ]; then
 	
-		echo "###########################################################################"
+		echo "################################################################################"
 		echo ""
 		exit 1
 	else
 		return 0
 	fi
 }
-##########################################################################
-#
-##
-### <®> Sale del script
-##
-duy_exit(){
+
+duy_exit(){ # <®> Sale del script.
 	# duy_msj "Hasta luego"
 	duy_msj -m "${duyCOP}" -s
 	
 	return 0
 }
-##########################################################################
-#
-##
-### <®> Descarga el archivo desde la url
-##
-duy_down(){
+
+duy_down(){ # <®> Descarga el archivo desde la url.
 	dst="$duyDST"
 	url="$duyURL"
 
-	# echo
-	# echo "wget -O $dst $url"
 	echo
 	wget -O "$dst" "$url"
 	
 	return 0
-	# exit 1
 }
-##########################################################################
-#
-##
-### <®> Descarga el archivo desde la url
-##
-duy_up(){
+
+duy_up(){ # <®> Subo el archivo a YouTube.
 	file="$duyDST"
 	tit="$duyTIT"
 
-	# echo
-	# echo "wget -O $dst $url"
 	echo
 	python rmDUY_UP.py --file="$file" --title="$tit"
 	
 	# wget -O "$dst" "$url"
 	
 	return 0
-	# exit 1
 }
-##########################################################################
 
-#
-##
-### <®> Desarrollo <®>
-##
-##########################################################################
-#
-##
-### <®> Inicializa Variables
-##
-# clear
-duyURL=""
-duyARCH=""
-duyTIT=""
-duyDIR="tmps"
-#
-##
-### <®> Obtiene argumentos de la línea de comandos
-##
+################################################################################
+# <®> CAPTURA DE ARGUMENTOS <®>
+################################################################################
+
+clear
+echo ""
+echo "################################################################################"
+echo "#   <®>${duyCOP}<®>   #"   
+echo "################################################################################"
+
 while [ $# -gt 0 ]
 do
   case $1 in
@@ -243,14 +263,14 @@ do
     -d | --dtmp)
       dtmp=$2;
       if [ -d "${dtmp}" ]; then
-		duyDIR=$dtmp
+		duyTMP=$dtmp
       else
-      	duy_msj -m "Directorio invalido se opta por predeterminado [${duyDIR}]"
+      	duy_msj -m "Directorio invalido se opta por predeterminado [${duyTMP}]"
       fi
       shift 2
       ;;
     -h | --help)
-      duy_msj "" 1 1
+      duy_msj -u -s
       ;;
     *)
       duy_msj -m "No se reconoce el parámetro --> $1" -u -s
@@ -260,15 +280,9 @@ do
 done
       
 
-#
-##
-### <®> Si verifican los requeridos ejecuta el script
-##
-if [ "${duyTIT}" = "" ]; then
-	duyTIT=$duyARCH
-fi
-
-duyDST="$duyDIR/$duyARCH"
+################################################################################
+# <®> VERIFICACION Y EJECUCION <®>
+################################################################################
 
 if [ "${duyURL}" != "" ] || [ "${duyARCH}" != "" ] ; then
 	duy_run ${1+"$@"}
