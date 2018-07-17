@@ -53,7 +53,7 @@
 duyAPP=`basename "$0"`
 duyPTH=`dirname "$0"`
 
-duyVER="1.0.4"
+duyVER="1.0.5"
 
 duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA <rmonla@gmail.com>"
 
