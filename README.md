@@ -2,17 +2,13 @@
 Descarga un archivo de video y lo sube a YouTube.
 
 
-###############################################################################
 ## <®> DESCRIPCION:
-###############################################################################
-     rmDUY 
-           Este script descarga desde una dirección URL un archivo de video
-           que luego sube mediante las APIs de google a YouTube.
+	rmDUY 
+	   Este script descarga desde una dirección URL un archivo de video
+	   que luego sube mediante las APIs de google a YouTube.
 
 
-###############################################################################
 ## <®> REQUERIDO
-###############################################################################
 
 	Este proyecto esta desarrollado para linux y para funcionar 
 	nesecita tener instalado lo siguiente: 
@@ -29,9 +25,7 @@ Descarga un archivo de video y lo sube a YouTube.
 
 
 
-###############################################################################
 ## <®> USO:
-###############################################################################
 
 	################################################################################
 	# <®>rmDUY v1.190415 - Copyright (c) 2019 Ricardo MONLA <rmonla@gmail.com><®>  #
