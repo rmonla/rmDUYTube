@@ -1,8 +1,10 @@
 Descargas
 
+***** Relizadas *****
+
 screen ./rmDUY \
--a TSAyGIES_TrabajoFinal_11Abr19 \
--t 'Carlos GIORGETTI - Trabajo Final - TSAyGIES - UTNLaRioja'
+-a 'TSAyGIES_TrabajoFinal_11Abr19' \
+-t 'TSAyGIES - Trabajo Final - 11Abr19' \
 -u http://190.114.222.202/tcs/download/E71C55A0-886C-478C-8DCE-894808DC0A0D
 
 screen ./rmDUY \
@@ -10,18 +12,22 @@ screen ./rmDUY \
 -u http://190.114.222.202/tcs/download/3EE50323-8580-4AD5-BFAB-99DC18C3F312
 
 screen ./rmDUY \
+-a 'Pru_Arch' \
+-t 'TSAyGIES - Trabajo Final - 11Abr19' \
+-D 'Carlos GIORGETTI - Trabajo Final - TSAyGIES - UTNLaRioja' \
+-u http://190.114.222.202/tcs/download/E71C55A0-886C-478C-8DCE-894808DC0A0
+
+
+***** En Curso  *****
+
+screen ./rmDUY \
+-a 'DTIC_TeamsYTenant_12Abr19_1800' \
+-t 'DTIC - Teams - Clarificación Tenant y Cuentas Office 365 de Facultades Regionales' \
+-u http://portalvc.utn.edu.ar:8081/storage-01/2019/videos/2019.04.12-18.00-Teams-Clarificaci%C3%B3n_Tenant_y_Cuentas_Office_365_de_Facultades_Regionales.mp4
+
+screen ./rmDUY \
 -a DTIC_Office365_Teams+Planner_3Abr19 \
+-t 'DTIC - Office365 Teams+Planner - 3Abr19' \
 -u http://portalvc.utn.edu.ar:8081/storage-01/2019/videos/2019.04.03-18.00-G%C3%A9minis-Workshop_Teams_+_Planner.mp4
 
-<<<<<<< HEAD
 
-
-screen ./rmDUY -a SecAcad_SecreatriosAcadémicos_1Abr19 -u http://190.114.222.202/tcs/download/975D2D82-C679-4508-9F79-574A9CE1242F
-
-
-
-=======
-	screen ./rmDUY -a TSAyGIES_TrabajoFinal_28Mar19 -u http://190.114.222.202/tcs/download/975D2D82-C679-4508-9F79-574A9CE1242F
-	screen ./rmDUY -a SecAcad_SecreatriosAcadémicos_1Abr19 -u http://190.114.222.202/tcs/download/975D2D82-C679-4508-9F79-574A9CE1242F
-
->>>>>>> origin/master

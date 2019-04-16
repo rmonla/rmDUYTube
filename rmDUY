@@ -54,13 +54,14 @@
 duyAPP=`basename "$0"`
 duyPTH=`dirname "$0"`
 
-duyVER="1.0.7"
+duyVER="1.190415"
 
-duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA <rmonla@gmail.com>"
+duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2019 Ricardo MONLA <rmonla@gmail.com>"
 
 duyURL=""
 duyARCH=""
 duyTIT=""
+duyDST=""
 
 duyDST="/tmp/"
 
@@ -77,6 +78,9 @@ duy_ver(){ # <®> Muestra detalle de versión.
 
   ${duyAPP} v${duyVER}
 
+  v1.190415 
+  * #### Agrega descripción del video para YouTube.
+  v1.0.7 
   * #### Se agrega Copyright.
   * #### Se limpia, ordena y optimiza código.
   * #### Se mejora ayuda de modo de uso. 
@@ -100,7 +104,8 @@ duy_uso(){ # <®> Muestra la forma de uso.
     -u, --url URL             Url del archivo de video a descargar.
     -a, --archivo ARCHIVO     Nombre del archivo descargado.
 
-    -t, --titulo TITULO       Título para el video en YouTube.
+    -t, --titulo  TITULO      YouTube -> Título.
+    -D, --descrip DESCRIPCION YouTube -> Descripción.
     -d, --destino DIRECTORIO  Directorio donde se descarga el archivo [$duyDST].
     -v, --ver                 Muestra detalle de versión.
     -h, --help                Esta ayuda por pantalla.
@@ -132,10 +137,12 @@ duy_run(){ # <®> Ejecuto el script.
 	##
 	echo
 	echo "App            -> $duyAPP"
-	echo "Url        [-u]-> $duyURL"
-	echo "Archivo    [-a]-> $duyARCH"
-	echo "Título     [-t]-> $duyTIT"
-	echo "Directorio [-d]-> $duyDST"
+	echo "Url         [-u]-> $duyURL"
+	echo "Archivo     [-a]-> $duyARCH"
+	echo "Título      [-t]-> $duyTIT"
+	echo "Descripción [-D]-> $duyDSC"
+	echo
+	echo "Directorio  [-d]-> $duyDST"
 	
 	echo
 	duy_down
@@ -215,9 +222,10 @@ duy_down(){ # <®> Descarga el archivo desde la url.
 duy_up(){ # <®> Subo el archivo a YouTube.
 	file="$duyDST2"
 	tit="$duyTIT"
+	dsc="$duyDSC"
 
 	echo
-	python rmDUY_UP.py --file="$file" --title="$tit"
+	python rmDUY_UP.py --file="$file" --title="$tit" --description="$dsc"
 	
 	return 0
 }
@@ -255,6 +263,14 @@ do
 			duyTIT=$2;
 			if [ "${duyTIT}" = "" ]; then
 				duyTIT=$duyARCH
+			else
+				shift 2
+			fi
+			;;
+		-D | --descrip)
+			duyDSC=$2;
+			if [ "${duyDSC}" = "" ]; then
+				duyDSC=$duyARCH
 			else
 				shift 2
 			fi
