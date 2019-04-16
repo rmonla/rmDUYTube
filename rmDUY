@@ -56,7 +56,7 @@ duyPTH=`dirname "$0"`
 
 duyVER="1.190415"
 
-duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2019 Ricardo MONLA <rmonla@gmail.com>"
+duyCOP="${duyAPP} v${duyVER} - Copyright (c) 2018 Ricardo MONLA <rmonla@gmail.com>"
 
 duyURL=""
 duyARCH=""
@@ -78,16 +78,19 @@ duy_ver(){ # <®> Muestra detalle de versión.
 
   ${duyAPP} v${duyVER}
 
+  v1.190416 
+  * #### Actualiza el módulo de ayuda por pantalla.
+  * #### Actualiza README.md.
   v1.190415 
   * #### Agrega descripción del video para YouTube.
   v1.0.7 
-  * #### Se agrega Copyright.
-  * #### Se limpia, ordena y optimiza código.
-  * #### Se mejora ayuda de modo de uso. 
-  * #### Se mejora salidas por pantallas. 
-  * #### Se agrega duy_ver() para mostrar detalles de versión.
-  * #### Se optimiza CAPTURA DE ARGUMENTOS.
   * #### Se actualiza README.md
+  * #### Se optimiza CAPTURA DE ARGUMENTOS.
+  * #### Se agrega duy_ver() para mostrar detalles de versión.
+  * #### Se mejora salidas por pantallas. 
+  * #### Se mejora ayuda de modo de uso. 
+  * #### Se limpia, ordena y optimiza código.
+  * #### Se agrega Copyright.
 
 EOF
 	return 0
@@ -96,7 +99,7 @@ EOF
 duy_uso(){ # <®> Muestra la forma de uso.
   cat >&2 <<EOF
 
-  Uso:     ${duyAPP} -u URL -a ARCHIVO [OPCIONES]
+  Uso:     ${duyAPP} -a ARCHIVO -u URL [OPCIONES]
 
     Este script descarga desde una dirección URL un archivo de video
     que luego sube mediante las APIs de google a YouTube.
@@ -106,11 +109,14 @@ duy_uso(){ # <®> Muestra la forma de uso.
 
     -t, --titulo  TITULO      YouTube -> Título.
     -D, --descrip DESCRIPCION YouTube -> Descripción.
+
     -d, --destino DIRECTORIO  Directorio donde se descarga el archivo [$duyDST].
     -v, --ver                 Muestra detalle de versión.
-    -h, --help                Esta ayuda por pantalla.
+    -h, --help                Muestra esta ayuda.
 
-  Ejemplo: ${duyAPP} -u http://190.114.222.202/tcs/download/EA552BC8-CB22-4E08-9222-21DAAD0CAF3 -a NOMBREvideo -t TITULOvideo
+  Ejemplo: 
+  ${duyAPP} -a ARCHIVO -u URL \\
+  -t 'Título del Video' -D 'Descripción del Video' -d DIRECTORIO
 EOF
 	return 0
 }
@@ -237,7 +243,7 @@ duy_up(){ # <®> Subo el archivo a YouTube.
 clear
 echo ""
 echo "################################################################################"
-echo "#   <®>${duyCOP}<®>   #"   
+echo "# <®>${duyCOP}<®>  #"   
 echo "################################################################################"
 
 while [ $# -gt 0 ]
