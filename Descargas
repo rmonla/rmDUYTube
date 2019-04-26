@@ -3,22 +3,9 @@ Descargas
 ***** Relizadas *****
 
 screen ./rmDUY \
--a 'TSAyGIES_TrabajoFinal_11Abr19' \
--t 'TSAyGIES - Trabajo Final - 11Abr19' \
--u http://190.114.222.202/tcs/download/E71C55A0-886C-478C-8DCE-894808DC0A0D
-
-screen ./rmDUY \
--a TSAyGIES_ElectMantenimiento_9Abr19 \
--u http://190.114.222.202/tcs/download/3EE50323-8580-4AD5-BFAB-99DC18C3F312
-
-screen ./rmDUY \
--a 'Pru_Arch' \
--t 'TSAyGIES - Trabajo Final - 11Abr19' \
--D 'Carlos GIORGETTI - Trabajo Final - TSAyGIES - UTNLaRioja' \
--u http://190.114.222.202/tcs/download/E71C55A0-886C-478C-8DCE-894808DC0A0
-
-
-***** En Curso  *****
+-a DTIC_Office365_Teams+Planner_3Abr19 \
+-t 'DTIC - Office365 Teams+Planner - 3Abr19' \
+-u http://portalvc.utn.edu.ar:8081/storage-01/2019/videos/2019.04.03-18.00-G%C3%A9minis-Workshop_Teams_+_Planner.mp4
 
 screen ./rmDUY \
 -a 'DTIC_TeamsYTenant_12Abr19_1800' \
@@ -26,8 +13,27 @@ screen ./rmDUY \
 -u http://portalvc.utn.edu.ar:8081/storage-01/2019/videos/2019.04.12-18.00-Teams-Clarificaci%C3%B3n_Tenant_y_Cuentas_Office_365_de_Facultades_Regionales.mp4
 
 screen ./rmDUY \
--a DTIC_Office365_Teams+Planner_3Abr19 \
--t 'DTIC - Office365 Teams+Planner - 3Abr19' \
--u http://portalvc.utn.edu.ar:8081/storage-01/2019/videos/2019.04.03-18.00-G%C3%A9minis-Workshop_Teams_+_Planner.mp4
+-a 'UTNLaRiojaSSAE_ReunionSecretarios_16Abr19_1200' \
+-t 'UTNLaRioja SSAE - Reunión de Secretarios SAE - 16Abr19 12:00' \
+-D 'SECRETARÍA DE ASUNTOS ESTUDIANTILES - RECTORADO - UTN' \
+-u http://190.114.222.202/tcs/download/6DAAEEAD-8F31-4A39-8242-3BD0E41CF486
+
+screen ./rmDUY \
+-a 'TSAyGIES_AtenciónAlPúblico_23Abr19_1400' \
+-t 'TSAyGIES - Atención Al Público - 16Abr19 14:00' \
+-D 'Comunicación - Lic. Pablo BALLETO - APUTN - TSAyGIES' \
+-u http://190.114.222.202/tcs/download/2615E64D-0FC1-41B5-AB5C-9FCC16922231
+
+
+***** En Curso  *****
+
+screen ./rmDUY \
+-a 'TSAyGIES_TrabajoFinal_25Abr19_1400' \
+-t 'TSAyGIES - Trabajo Final - 25Abr19_14:00' \
+-D 'Carlos GIORGETTI - Trabajo Final - TSAyGIES - UTNLaRioja' \
+-u http://190.114.222.202/tcs/download/70830BC1-8AE2-4F97-A564-9FDB9BA28D5C
+
+
+***** Pendiente  *****
 
 
