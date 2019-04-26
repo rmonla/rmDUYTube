@@ -142,7 +142,6 @@ duy_run(){ # <®> Ejecuto el script.
 	## Ejecuto el script.
 	##
 	echo
-	echo "App            -> $duyAPP"
 	echo "Url         [-u]-> $duyURL"
 	echo "Archivo     [-a]-> $duyARCH"
 	echo "Título      [-t]-> $duyTIT"
