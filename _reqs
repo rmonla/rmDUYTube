@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+
+duy_req(){ # <®> Muestra Requeridos.
+
+  cat >&2 <<EOF
+
+################################################################################
+# <®> REQUERIDOS
+################################################################################
+#
+#   Este proyecto esta desarrollado para linux y para funcionar 
+#   nesecita tener instalado lo siguiente: 
+# 
+# 	Módulos de linux:
+#    	sudo apt-get install wget
+# 
+# 	Módulos de python:
+#    	pip para instalar paquetes python.
+#       	--> sudo apt-get install python-pip
+#    	google apis para la subida a youtube.
+#       	--> sudo pip install --upgrade oauth2client
+#       	--> sudo pip install --upgrade google-api-python-client
+#
+################################################################################
+
+EOF
+	return 0
+}
