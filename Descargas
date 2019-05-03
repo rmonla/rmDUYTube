@@ -24,14 +24,19 @@ screen ./rmDUY \
 -D 'Comunicación - Lic. Pablo BALLETO - APUTN - TSAyGIES' \
 -u http://190.114.222.202/tcs/download/2615E64D-0FC1-41B5-AB5C-9FCC16922231
 
-
-***** En Curso  *****
-
 screen ./rmDUY \
 -a 'TSAyGIES_TrabajoFinal_25Abr19_1400' \
 -t 'TSAyGIES - Trabajo Final - 25Abr19_14:00' \
 -D 'Carlos GIORGETTI - Trabajo Final - TSAyGIES - UTNLaRioja' \
 -u http://190.114.222.202/tcs/download/70830BC1-8AE2-4F97-A564-9FDB9BA28D5C
+
+screen ./rmDUY \
+-a 'APUTN_SindicalismoYNacion_2May19_17:30' \
+-t 'APUTN - Sindicalismo Y Nación - 2May19_17:30' \
+-D 'Curso Teórico Practico de 25 Horas. Luchas gremiales y desarrollo histórico - Claroscuros de una historia inagotable. - APUTN - UTNLaRioja' \
+-u http://190.114.222.202/tcs/download/C320BAE3-4A13-41F4-88F4-E6E6F481732D
+
+***** En Curso  *****
 
 
 ***** Pendiente  *****
