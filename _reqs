@@ -19,6 +19,7 @@ duy_req(){ # <®> Muestra Requeridos.
 #    	pip para instalar paquetes python.
 #       	--> sudo apt-get install python-pip
 #    	google apis para la subida a youtube.
+#       	--> sudo pip install --upgrade setuptools
 #       	--> sudo pip install --upgrade oauth2client
 #       	--> sudo pip install --upgrade google-api-python-client
 #
