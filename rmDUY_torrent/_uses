@@ -1,3 +1,10 @@
-_use
+_uses
 
 python rmDUY_torrent --tfile=arch1.torrent
+
+
+aria2c --seed-time=0 'magnet:?xt=urn:btih:4c929b83ed9d82f48a77a756b6cc8dafaa494bb8&dn=New+Amsterdam+1x3+%5B720p%5D%5BCastellano%5D%5BwWw.EliteTorrent.IO%5D&xl=714102704&tr=udp://tracker.openbittorrent.com:80/announce&tr=udp://tracker.opentrackr.org:1337/announce'
+
+aria2c -S 'magnet:?xt=urn:btih:4c929b83ed9d82f48a77a756b6cc8dafaa494bb8&dn=New+Amsterdam+1x3+%5B720p%5D%5BCastellano%5D%5BwWw.EliteTorrent.IO%5D&xl=714102704&tr=udp://tracker.openbittorrent.com:80/announce&tr=udp://tracker.opentrackr.org:1337/announce'
+
+aria2c --select-file=1 --seed-time=0
