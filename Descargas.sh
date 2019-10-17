@@ -1,35 +1,40 @@
 Descargas
 
+### LAyGIES_Fnzas
 screen ./rmDUY \
--a 'LAyGIES_Finanzas04_16Sep19_14:00' \
--t 'LAyGIES - Finanzas - C04 - 16Sep19_14:00' \
--D 'Clase 04 - Luís CARRETERO - Finanzas y Financiamiento en IES - LAyGIES - UTNMendoza' \
--u http://190.114.222.202/tcs/download/315DD7B1-5BE2-4A11-801C-DFBADA79D217
+-a 'LAyGIES_Fnzas_C07_07Oct19_14:00' \
+-t 'LAyGIES - Finanzas - C07_07Oct19_14:00' \
+-D 'Clase 07 - Luís CARRETERO - Finanzas y Financiamiento en IES - LAyGIES - UTNMendoza' \
+-u http://190.114.222.202/tcs/download/EC3EC840-E35C-4CA3-8A0D-5155D391C5E7.mp4
 
 '
 _*Última Clase:*_
--->> http://bit.ly/LAyGIES_Fnzas_C04
+-->> https://youtu.be/mDHwDmw3HM4
 _*Lista de Clases:*_
 -->> http://bit.ly/LAyGIES_Fnzas_Clases
+'
+'
 _*Apuntes de Clases:*_
 -->> http://bit.ly/LAyGIES_Fnzas_Apuntes
 '
 
+### LAyGIES_Epist
 screen ./rmDUY \
--a 'LAyGIES_Epist_C06_2Oct19_14:00' \
--t 'LAyGIES - Epistemología - C06_2Oct19_14:00' \
+-a 'LAyGIES_Epist_C07a_02Oct19_14:00' \
+-t 'LAyGIES - Epistemología - C07a_02Oct19_14:00' \
 -D 'Clase 06 - Victor OLIVA - Epistemología - LAyGIES - UTNMendoza' \
--u http://190.114.222.202/tcs/download/8CB65F9C-557A-41F3-9498-AE6F617CDFA0.mp4
+-u http://190.114.222.202/tcs/download/4C248F5B-752B-4B2D-A847-8A9890C99FAD.mp4
 
 '
 _*Última Clase:*_
--->> https://youtu.be/MW82OTYnIT8
+-->> https://youtu.be/FB1rtpt1-v4
 _*Lista de Clases:*_
 -->> http://bit.ly/LAyGIES_Epist_Clases
-_*Apuntes de Clases:*_
+'
+'_*Apuntes de Clases:*_
 -->> http://bit.ly/LAyGIES_Epist_Apuntes
 '
-
+### LAyGIES_TIC
 screen ./rmDUY \
 -a 'LAyGIES_TIC06_04Oct19_14:00' \
 -t 'LAyGIES - TIC - C06 - 04Oct19_14:00' \
@@ -38,12 +43,14 @@ screen ./rmDUY \
 
 '
 _*Última Clase:*_
--->> http://bit.ly/LAyGIES_TIC_C04
+-->> https://youtu.be/DHyTFnl4ZO0
 _*Lista de Clases:*_
 -->> http://bit.ly/LAyGIES_TIC_Clases
-_*Apuntes de Clases:*_
--->> http://bit.ly/LAyGIES_TIC_Apuntes
 '
+# '
+# _*Apuntes de Clases:*_
+# -->> http://bit.ly/LAyGIES_TIC_Apuntes
+# '
 
 
 
@@ -72,7 +79,7 @@ screen ./rmDUY \
 _*Última V-Conferencia:*_
 -->> https://youtu.be/8hWzEkyBEZM
 _*Lista de Videos:*_
--->> http://bit.ly/UTNLaRioja_SSAE_VCs
+-->> http://bit.ly/UTNLaRioja_DTIC_VCs
 '
 
 
