@@ -20,14 +20,14 @@ _*Apuntes de Clases:*_
 
 ### LAyGIES_Epist
 screen ./rmDUY \
--a 'LAyGIES_Epist_C07a_02Oct19_14:00' \
--t 'LAyGIES - Epistemología - C07a_02Oct19_14:00' \
--D 'Clase 06 - Victor OLIVA - Epistemología - LAyGIES - UTNMendoza' \
--u http://190.114.222.202/tcs/download/4C248F5B-752B-4B2D-A847-8A9890C99FAD.mp4
+-a 'LAyGIES_Epist_C08_16Oct19_14:00' \
+-t 'LAyGIES - Epistemología - C08_16Oct19_14:00' \
+-D 'Clase 08 - Victor OLIVA - Epistemología - LAyGIES - UTNMendoza' \
+-u http://190.114.222.202/tcs/download/2CBECA43-006F-4892-A572-0EA4971D1533
 
 '
 _*Última Clase:*_
--->> https://youtu.be/FB1rtpt1-v4
+-->> https://youtu.be/_szxmFu5_r4
 _*Lista de Clases:*_
 -->> http://bit.ly/LAyGIES_Epist_Clases
 '
@@ -36,14 +36,14 @@ _*Lista de Clases:*_
 '
 ### LAyGIES_TIC
 screen ./rmDUY \
--a 'LAyGIES_TIC06_04Oct19_14:00' \
--t 'LAyGIES - TIC - C06 - 04Oct19_14:00' \
--D 'Clase 06 - Ing. Anibal CATAPANO GILI - Tecnología de la Información y Comunicaciones en IES - LAyGIES - UTNMendoza' \
--u http://190.114.222.202/tcs/download/4EC4AC1D-DFF2-4B08-BB23-35638AA0A6D5.mp4
+-a 'LAyGIES_TIC08_18Oct19_14:00' \
+-t 'LAyGIES - TIC - C08_18Oct19_14:00' \
+-D 'Clase 08 - Ing. Anibal CATAPANO GILI - Tecnología de la Información y Comunicaciones en IES - LAyGIES - UTNMendoza' \
+-u http://190.114.222.202/tcs/download/EC63B87C-4F36-4CAC-A1F5-EFF8752305F8
 
 '
 _*Última Clase:*_
--->> https://youtu.be/DHyTFnl4ZO0
+-->> https://youtu.be/kLJR_uSZbYQ
 _*Lista de Clases:*_
 -->> http://bit.ly/LAyGIES_TIC_Clases
 '
